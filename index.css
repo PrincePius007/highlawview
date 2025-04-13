@@ -1,0 +1,89 @@
+/* Example styles for the page */
+body {
+    font-family: 'Homemade Apple', cursive;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+
+  
+  
+  .paper {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Paper image styling */
+  .image img {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  .red {
+    background-color: #ffcccc;
+  }
+  
+  .p1 {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
+  .p2 {
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  .heart {
+    /* Add styles for the heart element if needed */
+  }
+  
+  /* Media Queries for mobile responsiveness */
+  @media only screen and (max-width: 768px) {
+    .paper {
+      margin: 10px;
+      padding: 15px;
+    }
+  
+    .image img {
+      max-width: 100%;
+    }
+  
+    .p1 {
+      font-size: 1.2em;
+    }
+  
+    .p2 {
+      font-size: 1em;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .paper {
+      margin: 5px;
+      padding: 10px;
+    }
+  
+    .p1 {
+      font-size: 1em;
+    }
+  
+    .p2 {
+      font-size: 0.9em;
+    }
+  
+    .image img {
+      max-width: 100%;
+    }
+  }
+  /* hoover */
+
+  
+  

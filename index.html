@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add this line for mobile responsiveness -->
+  <title>Hope</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Short+Stack&amp;family=Homemade+Apple&amp;display=swap">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- A pen by Developer Rahul  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hope</title>
+  <link href="https://fonts.googleapis.com/css2?family=Short+Stack&family=Homemade+Apple&family=Zeyada&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="paper heart"></div>
+
+  <div class="paper image">
+    <p class="p1">and I fallen in </p>
+    <p class="p1">Love with You 😍</p>
+    <img src="image/crus.jpg" />
+  </div>
+
+  <div class="paper image">
+    <img src="image/crush.jpg" />
+  </div>
+
+  <div class="paper image">
+    <p class="p1">How can be</p>
+    <p class="p1">someone so cute ❤️</p>
+    <img src="image/crus.jpg" />
+  </div>
+
+  <div class="paper red">
+    <p class="p1">I love you, truly.</p>
+    <p class="p1">Let’s cook up something special together.</p>
+  </div>
+
+  <div class="paper">
+    <p class="p1">You are Cute</p>
+    <p class="p1">Amazing <span style="color: red;">❤️</span></p>
+  </div>
+
+  <div class="paper">
+    <p class="p1">Drag the papers to move!</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- partial -->
+<script>
+
+let highestZ = 1;
+
+class Paper {
+  constructor(paper) {
+    this.paper = paper;
+    this.holding = false;
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.offsetX = 0;
+    this.offsetY = 0;
+    this.rotation = Math.random() * 30 - 15;
+
+    this.init();
+  }
+
+  init() {
+    const paper = this.paper;
+
+    const moveHandler = (x, y) => {
+      if (this.holding) {
+        this.offsetX += x - this.mouseX;
+        this.offsetY += y - this.mouseY;
+        this.mouseX = x;
+        this.mouseY = y;
+        paper.style.transform = `translate(${this.offsetX}px, ${this.offsetY}px) rotateZ(${this.rotation}deg)`;
+      }
+    };
+
+    const downHandler = (x, y) => {
+      this.holding = true;
+      paper.style.zIndex = highestZ++;
+      this.mouseX = x;
+      this.mouseY = y;
+    };
+
+    const upHandler = () => {
+      this.holding = false;
+    };
+
+    // Desktop
+    paper.addEventListener('mousedown', (e) => downHandler(e.clientX, e.clientY));
+    window.addEventListener('mousemove', (e) => moveHandler(e.clientX, e.clientY));
+    window.addEventListener('mouseup', upHandler);
+
+    // Mobile
+    paper.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      downHandler(touch.clientX, touch.clientY);
+    });
+    window.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      moveHandler(touch.clientX, touch.clientY);
+    });
+    window.addEventListener('touchend', upHandler);
+  }
+}
+
+// Apply to all paper elements
+document.querySelectorAll('.paper').forEach(el => new Paper(el));
+
+// Spread effect on click
+let spreadDone = false;
+document.body.addEventListener('click', () => {
+  if (spreadDone) return;
+  spreadDone = true;
+
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  document.querySelectorAll('.paper').forEach((paper, index) => {
+    setTimeout(() => {
+      const angle = (index - 3) * 12;
+      const offsetX = Math.cos(angle * Math.PI / 180) * 150;
+      const offsetY = Math.sin(angle * Math.PI / 180) * 100;
+      paper.style.transition = 'transform 1s ease';
+      paper.style.transform = `translate(${centerX + offsetX - 150}px, ${centerY + offsetY - 150}px) rotate(${angle}deg)`;
+      paper.style.zIndex = index + 10;
+    }, index * 150);
+  });
+});
+
+</script>
+
+
+</script>
+
+</body>
+</html>
